@@ -37,7 +37,7 @@ app.get('/about', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-    res.send("404 Not Found")
+    res.render('404')
 })
 
 app.listen(8000, () => {

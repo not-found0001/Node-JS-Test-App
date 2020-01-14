@@ -1,6 +1,8 @@
 const express = require('express')
 const path = require('path')
 const hbs = require('hbs')
+const geocode = require('./utils/geocode')
+const forcast = require('./utils/forcast')
 
 const app = express()
 
@@ -33,6 +35,53 @@ app.get('/about', (req, res) => {
     res.render('about', {
         name: "MK",
         title: "About"
+    })
+})
+
+app.get('/weather', (req, res) => {
+    // res.send({
+    //     key: 'This Is Weather Page',
+    //     address: req.query.address
+    // })
+
+    if(!req.query.location){
+        return res.render('weather', {
+            title: 'Weather',
+            name: 'MK',
+            error: 'Please Provide The Location'
+        })
+    }
+
+    geocode(req.query.location, (error, {latitude, longitude, location} = {}) => {
+        if(error){
+           return res.render('weather', {
+            title: 'Weather',
+            name: 'MK',
+            error
+            }) 
+        }
+        forcast(latitude, longitude, (error, {weather, temperature, rainPossibility} = {}) => {
+            if(error){
+                if(error){
+                    return res.render('weather', {
+                     title: 'Weather',
+                     name: 'MK',
+                     error
+                     })
+                }
+            }
+            res.render('weather', {
+                title: 'Weather',
+                name: 'MK',
+                latitude,
+                longitude,
+                location,
+                weather,
+                temperature,
+                rainPossibility,
+                address: req.query.location
+            })
+        })
     })
 })
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Weather Page</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+
+        <div class="main-content">
+            {{>header}}
+            {{#if error}}
+                <h3 style="color: red">{{error}}</h3>
+            {{else}}
+                <h3 style="color: rgb(184, 47, 47)">User Given Location: {{address}}</h3>
+                <div style="color: green">
+                    <h4>Weather Summary: {{weather}}</h4>
+                    <h4>Temperature: {{temperature}} Degree Farenhite</h4>
+                    <h4>Rain Possibility: {{rainPossibility}}</h4>
+                    <h4>Latitude: {{latitude}}</h4>
+                    <h4>Longitude: {{longitude}}</h4>
+                    <h4>Location From API: {{location}}</h4>
+                </div>
+            {{/if}}
+        </div>
+        
+        {{>footer}}
+
+        <script src="js/app.js"></script>
+
+    </body>
+</html>

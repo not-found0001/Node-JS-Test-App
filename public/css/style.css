@@ -24,3 +24,15 @@ header a{
     text-decoration: none;
     color: #888888;
 }
+
+input{
+    border: 1px solid #cccccc;
+    padding: 7px;
+}
+
+button{
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    padding: 7px;
+}

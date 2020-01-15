@@ -45,7 +45,7 @@ app.get('/weather', (req, res) => {
     // })
 
     if(!req.query.location){
-        return res.render('weather', {
+        return res.send({
             title: 'Weather',
             name: 'MK',
             error: 'Please Provide The Location'
@@ -54,7 +54,7 @@ app.get('/weather', (req, res) => {
 
     geocode(req.query.location, (error, {latitude, longitude, location} = {}) => {
         if(error){
-           return res.render('weather', {
+           return res.send({
             title: 'Weather',
             name: 'MK',
             error
@@ -63,14 +63,14 @@ app.get('/weather', (req, res) => {
         forcast(latitude, longitude, (error, {weather, temperature, rainPossibility} = {}) => {
             if(error){
                 if(error){
-                    return res.render('weather', {
+                    return res.send({
                      title: 'Weather',
                      name: 'MK',
                      error
                      })
                 }
             }
-            res.render('weather', {
+            res.send({
                 title: 'Weather',
                 name: 'MK',
                 latitude,

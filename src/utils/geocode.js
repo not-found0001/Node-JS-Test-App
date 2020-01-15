@@ -10,7 +10,7 @@ const geocode = (address, callback) => {
             callback('Unable To Connect Weather Service')
         }
         else if(response.body.features.length === 0){
-            callback('Location Not Found')
+            callback('Location Not Found.Try Another Search.')
         }
         else{
             callback('', {

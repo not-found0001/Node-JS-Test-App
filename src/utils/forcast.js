@@ -4,13 +4,13 @@ const request = require('request')
 
 const forcast = (latitude, longitude, callback) => {
     const url = 'https://api.darksky.net/forecast/' + darkSkyAPIKey + 
-                '/' + latitude + ',' + longitude + '?'
+                '/' + latitude + ',' + longitude + '?units=si'
     request({url, json:true}, (error, response) => {
         if(error){
-            callback('Unable To Connect Weather Service')
+            callback('Unable To Connect Weather Service.')
         }
         else if(response.body.error){
-            callback('Location Not Found')
+            callback('Location Not Found.Try Another Search.')
         }
         else{
             callback('', {
